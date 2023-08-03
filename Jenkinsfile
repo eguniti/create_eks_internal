@@ -8,11 +8,25 @@ pipeline {
     }
     stages {
         stage("Create an EKS Cluster") {
+            when {
+                   expression { choice == 'Create-EKS-Cluster'}
+            }
             steps {
                 script {
                     dir('terraform') {
-                        //sh "terraform init"
-                        //sh "terraform apply -auto-approve"
+                        sh "terraform init"
+                        sh "terraform apply -auto-approve"
+                    }
+                }
+            }
+        }
+        stage("Delete an EKS Cluster") {
+            when {
+                   expression { choice == 'Delete-EKS-Cluster'}
+            }
+            steps {
+                script {
+                    dir('terraform') {
                         sh "terraform destroy -auto-approve"
                     }
                 }
