@@ -14,6 +14,8 @@ module "jenkins-vpc" {
 
   tags = {
     "kubernetes.io/cluster/assess-eks-cluster" = "shared"
+     Environment = "Dev"
+     Project = "Promotion Assessment"
   }
 
   public_subnet_tags = {
